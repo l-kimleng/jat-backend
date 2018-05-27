@@ -6,8 +6,15 @@ const _ = require('lodash');
 
 router.get('/', async (req, res) => {
     try{
+        let page = parseInt(req.query.page);
+        let size = parseInt(req.query.size);
+        if(page <= 0) page = 1;
+        if(size <= 0) size = 5;
+
         const jobs = await Job.find()
             .sort('appliedDate')
+            .skip((page - 1)*size)
+            .limit(size)
             .select("title postDate appliedDate url company.name recruiter.name");
         res.send(jobs);
     }catch(ex) {
