@@ -1,3 +1,4 @@
 {
-    "jwtPrivateKey": "jat_jwtPrivateKey"
+    "jwtPrivateKey": "jat_jwtPrivateKey",
+    "dbConnectionString": "jat_mongodbConnectionString"
 }
