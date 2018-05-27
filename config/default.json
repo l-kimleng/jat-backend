@@ -1,3 +1,4 @@
 {
-    "dbConnectionString": "mongodb://localhost/jat"
+    "dbConnectionString": "mongodb://localhost/jat",
+    "jwtPrivateKey": ""
 }
