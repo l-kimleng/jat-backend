@@ -3,8 +3,9 @@ const express = require('express');
 const router = express.Router();
 const { Job } = require('../models/job');
 const _ = require('lodash');
+const auth = require('../middleware/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
     try{
         let page = parseInt(req.query.page);
         let size = parseInt(req.query.size);
@@ -22,7 +23,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
     try{
         const job = await createJob(req.body);
         res.send(job);
