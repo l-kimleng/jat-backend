@@ -21,9 +21,12 @@ const jobSchema = new mongoose.Schema({
     postDate: Date,
     appliedDate: Date,
     url: String,
-    isExpired: Boolean
+    isExpired: Boolean,
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        trim: true
+    }
 });
-
 
 const Job = mongoose.model('Job', jobSchema);
 

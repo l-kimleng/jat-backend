@@ -12,7 +12,7 @@ router.get('/', auth, async (req, res) => {
         if(page <= 0) page = 1;
         if(size <= 0) size = 5;
 
-        const jobs = await Job.find()
+        const jobs = await Job.find({userId: req.user._id})
             .sort('appliedDate')
             .skip((page - 1)*size)
             .limit(size)
@@ -25,7 +25,7 @@ router.get('/', auth, async (req, res) => {
 
 router.post('/', auth, async (req, res) => {
     try{
-        const job = await createJob(req.body);
+        const job = await createJob(_.merge(req.body, {userId: req.user._id}));
         res.send(job);
     }catch(ex) {
         res.status(500).send(ex.message);
@@ -33,7 +33,7 @@ router.post('/', auth, async (req, res) => {
 });
 
 async function createJob(job) {
-    const j = _.pick(job, ['title', 'postDate', 'appliedDate', 'url', 'isExpired',
+    const j = _.pick(job, ['title', 'postDate', 'appliedDate', 'url', 'isExpired', 'userId',
         'company.name', 'company.location.city', 'company.location.state', 'company.location.zipCode',
         'recruiter.name', 'recruiter.phone', 'recruiter.title', 'recruiter.company'
     ]);
