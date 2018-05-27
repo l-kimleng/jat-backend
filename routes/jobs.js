@@ -41,4 +41,14 @@ async function createJob(job) {
     return await newJob.save();
 }
 
+router.delete('/:id', auth, async (req, res) => {
+    try{
+        const job = await Job.findOneAndRemove({_id: req.params.id, userId: req.user._id});
+        if(!job) return res.status(404).send('Job not found for the given id.');
+        res.send(job);
+    }catch(ex) {
+        res.send(500).send(ex.message);
+    }
+});
+
 module.exports = router;
