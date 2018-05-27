@@ -9,7 +9,7 @@ const companySchema = new mongoose.Schema({
     },
     location: {
         type: locationSchema,
-        refs: "Location"
+        ref: "Location"
     }
 });
 

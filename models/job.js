@@ -1,9 +1,10 @@
 
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const {companySchema} = require('./company');
 const {recruiterSchema} = require('./recruiter');
 
-const jobSchema = new mongoose.Schema({ 
+const jobSchema = new Schema({ 
     title: {
         type: String,
         required: true,
@@ -12,18 +13,18 @@ const jobSchema = new mongoose.Schema({
     },
     company : {
         type: companySchema,       
-        refs: "Company"
+        ref: "Company"
     },
     recruiter: {
         type: recruiterSchema,
-        refs: "Recruiter"
+        ref: "Recruiter"
     },
     postDate: Date,
     appliedDate: Date,
     url: String,
     isExpired: Boolean,
     userId: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         trim: true
     }
 });
