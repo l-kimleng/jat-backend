@@ -8,4 +8,6 @@ require('./startup/db')();
 require('./startup/config')();
 require('./startup/prod')(app);
 
-app.listen(3030, () => console.log('Server listen to port 3030...'));
+const port = process.env.PORT || 3030;
+const server = app.listen(port, () => console.log(`Listening on port ${port}...`));
+module.exports = server;
