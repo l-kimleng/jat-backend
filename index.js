@@ -1,7 +1,9 @@
 
 const express = require('express');
+const cors = require('./middleware/cors');
 const app = express();
 app.use(express.json());
+app.use(cors);
 
 require('./startup/routes')(app);
 require('./startup/db')();
