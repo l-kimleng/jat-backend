@@ -8,5 +8,5 @@ module.exports = function(app) {
     app.use('/', homeRoute);
     app.use('/api/jobs', jobsRoute);
     app.use('/api/register', usersRoute);
-    app.use('/api/login/', authRoute);
+    app.use('/api/login', authRoute);
 }
